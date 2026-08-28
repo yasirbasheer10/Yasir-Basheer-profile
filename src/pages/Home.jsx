@@ -168,7 +168,7 @@ function Home() {
                 Copy
               </button>
               <a 
-                href="/CV.pdf" 
+                href="/Yasir%20Basheer%20Resume.pdf" 
                 target="_blank" 
                 className="px-5 py-1.5 bg-white rounded-full border border-gray-100 shadow-sm text-xs md:text-sm font-medium hover:bg-gray-50 transition-colors"
               >
@@ -211,18 +211,18 @@ function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-64 bg-[#E4E4E4] rounded-t-[50%] scale-x-[1.5] origin-bottom z-0"></div>
           
           <div className="relative z-10 flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-12 px-4 md:px-12 pb-8 max-w-[1400px] mx-auto w-full">
-             <div className="text-lg md:text-xl font-bold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-tighter">Kava by Mitra</div>
-             <div className="text-lg md:text-xl font-bold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity uppercase tracking-widest">EM Cosmetics</div>
-             <div className="text-lg md:text-xl font-bold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity">NUorganics</div>
-             <div className="text-lg md:text-xl font-bold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity font-serif">ProspectIQ</div>
-             <div className="text-lg md:text-xl font-bold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity">Eyeora VR</div>
+             <div className="text-lg md:text-xl font-semibold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-wide uppercase">E-Commerce</div>
+             <div className="text-lg md:text-xl font-semibold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-wide uppercase">CRO & Analytics</div>
+             <div className="text-lg md:text-xl font-semibold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-wide uppercase">AI Workflows</div>
+             <div className="text-lg md:text-xl font-semibold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-wide uppercase">Product Strategy</div>
+             <div className="text-lg md:text-xl font-semibold text-gray-500 grayscale opacity-80 hover:opacity-100 transition-opacity tracking-wide uppercase">Team Leadership</div>
           </div>
         </div>
 
-        <div className="px-2 sm:px-4 md:px-6 w-full flex flex-col gap-6 md:gap-10 max-w-[1920px] mx-auto">
+        <div className="px-2 sm:px-4 md:px-6 w-full flex flex-col gap-10 md:gap-16 max-w-[1920px] mx-auto">
           
           {/* Services Section */}
-          <div id="services" className="py-12 md:py-20 px-4 flex flex-col items-center text-center relative w-full">
+          <div id="services" className="pt-12 md:pt-16 pb-0 px-4 flex flex-col items-center text-center relative w-full">
             <div className="absolute top-8 bg-white px-4 py-1.5 rounded-full text-[11px] font-semibold shadow-sm transform -rotate-[4deg] border border-gray-100 z-10 text-gray-600">
               Services
             </div>
@@ -275,7 +275,7 @@ function Home() {
           </div>
 
           {/* Case Studies Header */}
-          <div className="py-6 md:py-10 px-4 flex flex-col items-center text-center relative w-full">
+          <div className="pt-0 pb-6 md:pb-10 px-4 flex flex-col items-center text-center relative w-full">
             <div className="bg-white px-4 py-1.5 rounded-full text-[11px] font-semibold shadow-sm transform -rotate-[2deg] border border-gray-100 z-10 text-gray-600 mb-6">
               Case Studies
             </div>
@@ -446,7 +446,7 @@ function Home() {
           </div>
 
           {/* Core Competencies Section */}
-          <div className="py-16 md:py-20 px-6 w-full max-w-[1200px] mx-auto text-left relative z-10 border-t border-gray-100">
+          <div className="pt-12 md:pt-16 pb-0 px-6 w-full max-w-[1200px] mx-auto text-left relative z-10 border-t border-gray-100">
             <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
               {/* Left Column */}
               <div className="lg:w-1/3 flex flex-col items-start">
@@ -516,7 +516,7 @@ function Home() {
           <div className="w-full max-w-[1920px] mx-auto px-2 md:px-4 mb-4">
             
             {/* Global Section Heading */}
-            <div className="py-6 md:py-10 px-4 flex flex-col items-center text-center relative w-full mb-8">
+            <div className="pt-0 pb-6 md:pb-10 px-4 flex flex-col items-center text-center relative w-full mb-8">
               <div className="bg-white px-4 py-1.5 rounded-full text-[11px] font-semibold shadow-sm border border-gray-100 z-10 text-gray-600 mb-6">
                 Career
               </div>
@@ -641,7 +641,7 @@ function Home() {
                 <Mail size={16} /> Email Me
               </a>
               <a href="https://wa.me/923188201038" className="bg-white text-gray-900 px-7 py-3 rounded-full font-medium border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-2 text-xs md:text-sm shadow-sm">
-                WhatsApp
+                WhatsApp (+92 318 8201038)
               </a>
             </div>
           
