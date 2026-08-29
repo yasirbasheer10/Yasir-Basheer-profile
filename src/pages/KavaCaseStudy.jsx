@@ -15,7 +15,7 @@ function KavaCaseStudy() {
         <title>Kava by Mitra - Case Study | Yasir Basheer</title>
         <meta name="description" content="Case study on building the Kava by Mitra e-commerce brand from the ground up, owning the Shopify storefront build, launch strategy, and operations." />
         <meta property="og:title" content="Kava by Mitra - E-commerce Case Study" />
-        <meta property="og:image" content="https://yasirbasheer.com/kava.png" />
+        <meta property="og:image" content="https://www.yasirbasheer.live/kava.png" />
       </Helmet>
       <div className="bg-noise"></div>
 

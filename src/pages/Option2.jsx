@@ -1,4 +1,4 @@
-﻿import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ArrowLeft, ArrowRight } from 'lucide-react';

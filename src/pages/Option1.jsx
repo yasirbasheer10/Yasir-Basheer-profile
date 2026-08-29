@@ -1,4 +1,4 @@
-﻿import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -101,7 +101,7 @@ export default function Option1() {
           <div className="w-full md:w-2/3 exp-card">
             <div className="bg-[#0A0A0A] text-white p-12 rounded-[32px] h-[400px]">
               <h3 className="text-3xl font-bold mb-2">{experience[currentExp].role}</h3>
-              <p className="text-xl text-gray-400 mb-8">{experience[currentExp].company} • {experience[currentExp].date}</p>
+              <p className="text-xl text-gray-400 mb-8">{experience[currentExp].company} � {experience[currentExp].date}</p>
               <div className="grid grid-cols-2 gap-8">
                 {experience[currentExp].points.map((pt, i) => (
                   <div key={i} className="text-gray-300">{pt}</div>

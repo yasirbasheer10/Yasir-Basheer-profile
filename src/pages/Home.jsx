@@ -171,8 +171,8 @@ function Home() {
         <meta name="description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution. Explore my portfolio and case studies." />
         <meta property="og:title" content="Yasir Basheer | Senior Project Manager" />
         <meta property="og:description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution." />
-        <meta property="og:image" content="https://yasirbasheer.com/prospectIQ.png" />
-        <meta property="og:url" content="https://yasirbasheer.com" />
+        <meta property="og:image" content="https://www.yasirbasheer.live/prospectIQ.png" />
+        <meta property="og:url" content="https://www.yasirbasheer.live" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
