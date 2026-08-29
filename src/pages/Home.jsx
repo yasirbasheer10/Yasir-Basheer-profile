@@ -148,7 +148,7 @@ function Home() {
       tags: ['Framer', 'E-commerce', 'UX/UI', 'CRO'],
       geography: 'United States',
       flag: '🇺🇸',
-      image: '/vela.png',
+      image: '/vela.webp',
       link: 'https://vela-bottle.framer.website/'
     }
   ];
