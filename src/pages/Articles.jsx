@@ -24,31 +24,56 @@ const SocialMetrics = ({ isDark }) => (
   </div>
 );
 
+const AuthorBadge = ({ isDark }) => (
+  <div className={`flex items-center gap-3 ${isDark ? 'text-white' : 'text-gray-900'} mb-8`}>
+    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 shadow-sm">
+      <img src="https://media.contra.com/image/upload/h_160,w_160/pyyju4uqxxwa6kxdrghl.avif" alt="Yasir Basheer" className="w-full h-full object-cover" />
+    </div>
+    <div className="flex flex-col text-left">
+      <span className="text-sm font-semibold">Yasir Basheer</span>
+      <span className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Senior Project Manager</span>
+    </div>
+  </div>
+);
+
 function Articles() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] font-sans text-gray-900 selection:bg-gray-200 selection:text-black pb-20">
+    <div className="min-h-screen bg-[#F5F5F7] font-sans text-gray-900 selection:bg-gray-200 selection:text-black pb-20 relative">
       <Helmet>
         <title>Articles | Yasir Basheer</title>
         <meta name="description" content="Read articles and insights on project management, AI workflows, and e-commerce product design." />
         <link rel="canonical" href="https://www.yasirbasheer.live/articles" />
       </Helmet>
 
+      {/* Decorative Hero Background */}
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-gray-200/50 to-transparent pointer-events-none"></div>
+
       {/* Navigation */}
-      <nav className="w-full px-8 py-8 flex justify-between items-center max-w-[1400px] mx-auto">
-        <Link to="/" className="text-sm font-semibold tracking-wide hover:text-gray-600 transition-colors flex items-center gap-2">
-          <ArrowLeft size={16} /> Back to Home
+      <nav className="w-full px-8 py-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-10">
+        <Link to="/" className="text-sm font-semibold tracking-wide hover:text-gray-600 transition-colors flex items-center gap-2 bg-white/50 backdrop-blur-md px-5 py-2 rounded-full border border-gray-200 shadow-sm">
+          <ArrowLeft size={16} /> Back to Portfolio
         </Link>
       </nav>
 
-      <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 mt-8">
-        <div className="mb-4">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Articles & Insights</h1>
-          <p className="text-gray-500 text-lg">Thoughts on AI, product design, and scalable team leadership.</p>
+      {/* Hero Section */}
+      <header className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-10 md:mt-20 mb-20 relative z-10 flex flex-col items-center text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold tracking-wide mb-6 border border-blue-100">
+          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Insights & Writing
         </div>
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-gray-900 max-w-4xl">
+          Thoughts on product, scalable teams, and AI.
+        </h1>
+        <p className="text-gray-500 text-lg md:text-xl max-w-2xl leading-relaxed">
+          Deep dives into technical execution, conversion rate optimization, and my methodology for building high-velocity engineering teams.
+        </p>
+      </header>
+
+      <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 mt-8 relative z-10">
 
         {/* Card 1: Blue Centered Hero (Visual Product Design) */}
         <section className="w-full rounded-[40px] bg-[#1E40AF] text-white p-12 md:p-20 relative overflow-hidden shadow-xl flex flex-col items-center text-center group transition-transform duration-500 hover:scale-[1.01]">
@@ -58,6 +83,7 @@ function Articles() {
           <div className="absolute bottom-10 right-10 w-48 h-48 bg-blue-400/20 rounded-full blur-3xl"></div>
           
           <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+            <AuthorBadge isDark={true} />
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase mb-6">Article</span>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">The power of visual in product design</h2>
             <p className="text-blue-100 text-sm md:text-base max-w-md mb-10 leading-relaxed">
@@ -74,6 +100,7 @@ function Articles() {
           <SocialMetrics isDark={false} />
           <div className="flex flex-col md:flex-row gap-12 items-center mb-16 pr-0 md:pr-12">
             <div className="w-full md:w-1/2 flex flex-col items-start z-10">
+              <AuthorBadge isDark={false} />
               <span className="text-[#4338CA] font-bold text-sm tracking-wide mb-8">Bookify</span>
               <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold mb-6 leading-[1.05] tracking-tight text-[#2E1065]">
                 Acclaimed<br/>books right to<br/>your phone
@@ -127,6 +154,7 @@ function Articles() {
                 </div>
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-start z-10 pl-0 md:pl-10">
+              <AuthorBadge isDark={false} />
               <span className="text-gray-900 font-bold text-lg tracking-wide mb-6">Worldpackers</span>
               <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold mb-6 leading-[1.05] tracking-tight">
                 A world of ways<br/>to travel the<br/>world
