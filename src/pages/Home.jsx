@@ -169,12 +169,28 @@ function Home() {
       <Helmet>
         <title>Yasir Basheer | Senior Project Manager & AI-Driven Delivery</title>
         <meta name="description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution. Explore my portfolio and case studies." />
+        <link rel="canonical" href="https://www.yasirbasheer.live/" />
         <meta property="og:title" content="Yasir Basheer | Senior Project Manager" />
         <meta property="og:description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution." />
-        <meta property="og:image" content="https://www.yasirbasheer.live/prospectIQ.png" />
+        <meta property="og:image" content="https://www.yasirbasheer.live/og-banner.png" />
         <meta property="og:url" content="https://www.yasirbasheer.live" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Yasir Basheer",
+              "jobTitle": "Senior Technical Project Manager",
+              "url": "https://www.yasirbasheer.live/",
+              "sameAs": [
+                "https://linkedin.com/in/yasirbasheer",
+                "https://contra.com/yasir_basheer"
+              ]
+            }
+          `}
+        </script>
       </Helmet>
       
       <div className="bg-noise"></div>

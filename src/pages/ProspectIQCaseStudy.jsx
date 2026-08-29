@@ -14,6 +14,7 @@ function ProspectIQCaseStudy() {
       <Helmet>
         <title>ProspectIQ - AI Platform Case Study | Yasir Basheer</title>
         <meta name="description" content="Case study on building ProspectIQ, an AI-powered B2B lead intelligence platform, integrating LLM-based data extraction and opportunity scoring." />
+        <link rel="canonical" href="https://www.yasirbasheer.live/case-study/prospectiq" />
         <meta property="og:title" content="ProspectIQ - AI Platform Case Study" />
         <meta property="og:image" content="https://www.yasirbasheer.live/prospectIQ.png" />
       </Helmet>
