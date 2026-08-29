@@ -1,23 +1,39 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Copy, Mail, Handshake, ExternalLink, ArrowRight, ArrowLeft, ArrowUpRight, Search, Target, Zap, TrendingUp, Monitor, Smartphone, PenTool, Code2 } from 'lucide-react';
+import gsap from 'gsap';
 import '../App.css';
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentExpSlide, setCurrentExpSlide] = useState(0);
-  const [expFading, setExpFading] = useState(false);
+  const careerRef = useRef(null);
 
   const changeExpSlide = useCallback((direction) => {
-    setExpFading(true);
-    setTimeout(() => {
-      setCurrentExpSlide(prev => {
-        if (direction === 'next') return prev === 4 ? 0 : prev + 1;
-        return prev === 0 ? 4 : prev - 1;
-      });
-      setExpFading(false);
-    }, 300);
+    let ctx = gsap.context(() => {
+      gsap.to('.exp-title-anim', { opacity: 0, x: -20, duration: 0.3, ease: 'power2.in' });
+      gsap.to('.exp-point-anim', { opacity: 0, scale: 0.9, y: 10, duration: 0.2, stagger: 0.05, ease: 'power2.in', onComplete: () => {
+        setCurrentExpSlide(prev => {
+          if (direction === 'next') return prev === 4 ? 0 : prev + 1;
+          return prev === 0 ? 4 : prev - 1;
+        });
+      }});
+    }, careerRef);
   }, []);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.exp-title-anim', 
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }
+      );
+      gsap.fromTo('.exp-point-anim',
+        { opacity: 0, scale: 0.8, y: 20 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.7)' }
+      );
+    }, careerRef);
+    return () => ctx.revert();
+  }, [currentExpSlide]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('yasirmughal668@gmail.com');
@@ -526,17 +542,17 @@ function Home() {
             </div>
 
             {/* Slider Container */}
-            <div className="bg-[#ECECEC] rounded-[40px] md:rounded-[60px] py-12 md:py-20 px-8 md:px-16 shadow-sm flex flex-col lg:flex-row relative overflow-hidden items-center">
+            <div ref={careerRef} className="bg-[#ECECEC] rounded-[40px] md:rounded-[60px] py-12 md:py-20 px-8 md:px-16 shadow-sm flex flex-col lg:flex-row relative overflow-hidden items-center">
               
               {/* Left Side: Title & Dates */}
               <div className="flex flex-col items-start lg:w-[40%] lg:pr-16 mb-16 lg:mb-0">
                 
-                <div className={`min-h-[140px] md:min-h-[160px] transition-opacity duration-300 ease-in-out ${expFading ? 'opacity-0' : 'opacity-100'}`}>
-                  <h2 className="text-5xl md:text-[56px] font-medium text-gray-900 tracking-tight leading-[1.1] mb-4">
+                <div className="min-h-[140px] md:min-h-[160px]">
+                  <h2 className="exp-title-anim text-5xl md:text-[56px] font-medium text-gray-900 tracking-tight leading-[1.1] mb-4">
                     {experience[currentExpSlide].role}
                   </h2>
                   
-                  <p className="text-base md:text-lg text-gray-800 font-light mb-16 leading-relaxed max-w-sm">
+                  <p className="exp-title-anim text-base md:text-lg text-gray-800 font-light mb-16 leading-relaxed max-w-sm">
                     {experience[currentExpSlide].company} <br />
                     <span className="text-gray-500">{experience[currentExpSlide].date}</span>
                   </p>
@@ -570,14 +586,14 @@ function Home() {
                   {/* Subtle aesthetic glow inside the black box */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/[0.02] rounded-full blur-[100px] pointer-events-none"></div>
                   
-                  <div className={`grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10 relative z-10 transition-opacity duration-300 ease-in-out ${expFading ? 'opacity-0' : 'opacity-100'}`}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10 relative z-10">
                     {experience[currentExpSlide].points.slice(0, 4).map((point, i) => {
                       const parts = point.split(':');
                       const title = parts[0];
                       const description = parts.slice(1).join(':').trim();
                       
                       return (
-                        <div key={i} className="flex flex-col gap-2">
+                        <div key={i} className="flex flex-col gap-2 exp-point-anim">
                           {description ? (
                             <>
                               <h4 className="text-sm font-semibold text-white tracking-wide">{title}</h4>
