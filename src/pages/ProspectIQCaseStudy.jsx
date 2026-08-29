@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import '../index.css';
 
@@ -9,7 +10,13 @@ function ProspectIQCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FCFCFC] text-gray-900 font-sans selection:bg-gray-200 selection:text-black">
+    <article className="min-h-screen bg-[#FCFCFC] text-gray-900 font-sans selection:bg-gray-200 selection:text-black">
+      <Helmet>
+        <title>ProspectIQ - AI Platform Case Study | Yasir Basheer</title>
+        <meta name="description" content="Case study on building ProspectIQ, an AI-powered B2B lead intelligence platform, integrating LLM-based data extraction and opportunity scoring." />
+        <meta property="og:title" content="ProspectIQ - AI Platform Case Study" />
+        <meta property="og:image" content="https://yasirbasheer.com/prospectIQ.png" />
+      </Helmet>
       <div className="bg-noise"></div>
 
       {/* Navigation */}
@@ -139,7 +146,7 @@ function ProspectIQCaseStudy() {
         </div>
 
       </section>
-    </div>
+    </article>
   );
 }
 

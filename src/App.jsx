@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Home from './pages/Home';
 import KavaCaseStudy from './pages/KavaCaseStudy';
 import ProspectIQCaseStudy from './pages/ProspectIQCaseStudy';
@@ -9,16 +10,18 @@ import Option3 from './pages/Option3';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/case-study/kava" element={<KavaCaseStudy />} />
-        <Route path="/case-study/prospectiq" element={<ProspectIQCaseStudy />} />
-        <Route path="/option1" element={<Option1 />} />
-        <Route path="/option2" element={<Option2 />} />
-        <Route path="/option3" element={<Option3 />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/case-study/kava" element={<KavaCaseStudy />} />
+          <Route path="/case-study/prospectiq" element={<ProspectIQCaseStudy />} />
+          <Route path="/option1" element={<Option1 />} />
+          <Route path="/option2" element={<Option2 />} />
+          <Route path="/option3" element={<Option3 />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

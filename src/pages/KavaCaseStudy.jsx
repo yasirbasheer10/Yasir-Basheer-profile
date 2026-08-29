@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import '../index.css';
 
@@ -9,7 +10,13 @@ function KavaCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FCFCFC] text-gray-900 font-sans selection:bg-gray-200 selection:text-black">
+    <article className="min-h-screen bg-[#FCFCFC] text-gray-900 font-sans selection:bg-gray-200 selection:text-black">
+      <Helmet>
+        <title>Kava by Mitra - Case Study | Yasir Basheer</title>
+        <meta name="description" content="Case study on building the Kava by Mitra e-commerce brand from the ground up, owning the Shopify storefront build, launch strategy, and operations." />
+        <meta property="og:title" content="Kava by Mitra - E-commerce Case Study" />
+        <meta property="og:image" content="https://yasirbasheer.com/kava.png" />
+      </Helmet>
       <div className="bg-noise"></div>
 
       {/* Navigation */}
@@ -125,7 +132,7 @@ function KavaCaseStudy() {
         </div>
 
       </section>
-    </div>
+    </article>
   );
 }
 

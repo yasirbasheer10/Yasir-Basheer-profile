@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Copy, Mail, Handshake, ExternalLink, ArrowRight, ArrowLeft, ArrowUpRight, Search, Target, Zap, TrendingUp, Monitor, Smartphone, PenTool, Code2 } from 'lucide-react';
 import gsap from 'gsap';
 import '../App.css';
@@ -165,6 +166,17 @@ function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Yasir Basheer | Senior Project Manager & AI-Driven Delivery</title>
+        <meta name="description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution. Explore my portfolio and case studies." />
+        <meta property="og:title" content="Yasir Basheer | Senior Project Manager" />
+        <meta property="og:description" content="Senior Technical Project Manager specializing in E-commerce CRO, AI/ML workflows, and full-stack technical execution." />
+        <meta property="og:image" content="https://yasirbasheer.com/prospectIQ.png" />
+        <meta property="og:url" content="https://yasirbasheer.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+      
       <div className="bg-noise"></div>
       
       <div className="min-h-screen flex flex-col font-sans text-gray-900 mx-auto w-full">
@@ -428,6 +440,7 @@ function Home() {
                             <img 
                               src={project.image} 
                               alt={project.title} 
+                              loading="lazy"
                               className={`w-full h-full rounded-[12px] md:rounded-[16px] shadow-2xl ${
                                 ['Kava by Mitra', 'EM Cosmetics', 'Vela Bottle'].includes(project.title) 
                                   ? 'object-contain object-top' 
@@ -447,12 +460,14 @@ function Home() {
             <div className="absolute bottom-12 right-12 flex gap-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <button 
                 onClick={prevSlide}
+                aria-label="Previous Project"
                 className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/80 border border-white/10 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105"
               >
                 <ArrowLeft size={20} />
               </button>
               <button 
                 onClick={nextSlide}
+                aria-label="Next Project"
                 className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-md hover:bg-black/80 border border-white/10 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105"
               >
                 <ArrowRight size={20} />
@@ -566,12 +581,14 @@ function Home() {
                   <div className="flex gap-2">
                     <button 
                       onClick={() => changeExpSlide('prev')}
+                      aria-label="Previous Career Experience"
                       className="w-12 h-12 rounded-full border border-gray-300 bg-white/50 flex items-center justify-center hover:bg-white transition-colors text-gray-700 hover:text-black"
                     >
                       <ArrowLeft size={18} />
                     </button>
                     <button 
                       onClick={() => changeExpSlide('next')}
+                      aria-label="Next Career Experience"
                       className="w-12 h-12 rounded-full border border-gray-300 bg-white/50 flex items-center justify-center hover:bg-white transition-colors text-gray-700 hover:text-black"
                     >
                       <ArrowRight size={18} />
