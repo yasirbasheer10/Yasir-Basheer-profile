@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, ArrowLeft, ThumbsUp, ThumbsDown, MessageSquare, Eye, Search, Mail } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ThumbsUp, ThumbsDown, MessageSquare, Eye, Search, Mail, Bot, ShoppingBag, Zap } from 'lucide-react';
 
 const SocialMetrics = ({ isDark }) => (
   <div className={`absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 p-3 rounded-full backdrop-blur-md border ${isDark ? 'bg-black/20 border-white/10 text-white/90' : 'bg-white/60 border-black/5 text-gray-700'} z-20 shadow-sm`}>
@@ -102,7 +102,7 @@ function Articles() {
 
       <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 w-full flex-grow">
 
-        {/* Card 1: Blue Centered Hero (CRO) */}
+        {/* Card 1: Blue Centered Hero (Product Strategy) */}
         <section className="w-full rounded-[40px] bg-[#1E40AF] text-white p-12 md:p-20 relative overflow-hidden shadow-xl flex flex-col items-center text-center group transition-transform duration-500 hover:scale-[1.01]">
           <SocialMetrics isDark={true} />
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
@@ -110,12 +110,12 @@ function Articles() {
           
           <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
             <AuthorBadge isDark={true} />
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase mb-6">CRO & E-Commerce</span>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">The CRO Hierarchy of Needs</h2>
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase mb-6">Product Strategy</span>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">From Lead Gen to Lead Intelligence</h2>
             <p className="text-blue-100 text-sm md:text-base max-w-md mb-10 leading-relaxed">
-              A definitive framework for prioritizing Conversion Rate Optimization in E-commerce, from basic site speed to advanced testing.
+              The era of spray-and-pray outbound is over. Discover how AI transforms raw lead generation into predictive lead intelligence to drive higher B2B closing rates.
             </p>
-            <Link to="/articles/cro-hierarchy" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full backdrop-blur-md transition-colors text-sm font-semibold">
+            <Link to="/articles/lead-intelligence" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full backdrop-blur-md transition-colors text-sm font-semibold">
               Read Article <ArrowRight size={16} />
             </Link>
           </div>
@@ -138,7 +138,7 @@ function Articles() {
             <div className="w-full md:w-1/2 flex justify-center z-10 relative h-[400px]">
                 {/* Visual Placeholder */}
                 <div className="w-[240px] h-[480px] bg-white rounded-[36px] shadow-2xl border-8 border-gray-900 absolute top-0 -rotate-3 overflow-hidden flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50">
-                   <div className="text-6xl">🤖</div>
+                   <Bot size={80} className="text-indigo-400 opacity-80" />
                 </div>
             </div>
           </div>
@@ -158,27 +158,27 @@ function Articles() {
           </div>
         </section>
 
-        {/* Card 3: White Split (Product Strategy) */}
+        {/* Card 3: White Split (CRO) */}
         <section className="w-full rounded-[40px] bg-white text-[#1e1e1e] p-8 md:p-16 relative overflow-hidden shadow-sm flex flex-col justify-between group transition-transform duration-500 hover:scale-[1.01]">
           <SocialMetrics isDark={false} />
           <div className="flex flex-col-reverse md:flex-row gap-12 items-center mb-16 pr-0 md:pr-12">
             <div className="w-full md:w-1/2 flex justify-center z-10 relative h-[400px]">
                 {/* Visual Placeholder */}
                 <div className="w-[200px] h-[400px] bg-white rounded-[32px] shadow-2xl border-8 border-gray-900 absolute top-10 left-10 -rotate-6 overflow-hidden z-10 flex items-center justify-center bg-gray-50">
-                   <div className="text-5xl">📊</div>
+                   <ShoppingBag size={64} className="text-gray-400 opacity-80" />
                 </div>
                 <div className="w-[200px] h-[400px] bg-white rounded-[32px] shadow-2xl border-8 border-gray-900 absolute top-0 right-10 rotate-3 overflow-hidden flex items-center justify-center bg-gray-100">
-                   <div className="text-5xl">📈</div>
+                   <Zap size={64} className="text-yellow-500 opacity-80" />
                 </div>
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-start z-10 pl-0 md:pl-10">
               <AuthorBadge isDark={false} />
-              <span className="text-gray-900 font-bold text-lg tracking-wide mb-6">Product Strategy</span>
+              <span className="text-gray-900 font-bold text-lg tracking-wide mb-6">CRO & E-Commerce</span>
               <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold mb-6 leading-[1.05] tracking-tight">
-                From Lead Gen<br/>to Lead<br/>Intelligence
+                The CRO<br/>Hierarchy<br/>of Needs
               </h2>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-sm">
-                The era of spray-and-pray outbound is over. Discover how AI transforms raw lead generation into predictive lead intelligence to drive higher B2B closing rates.
+                A definitive framework for prioritizing Conversion Rate Optimization in E-commerce, from basic site speed to advanced testing.
               </p>
             </div>
           </div>
@@ -187,14 +187,14 @@ function Articles() {
           <div className="w-full bg-gray-50 rounded-3xl p-4 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 border border-gray-100">
             <div className="flex items-center gap-8 pl-2 flex-wrap justify-center">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-bold text-xs">LI</div>
+                <div className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-bold text-xs">CRO</div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-gray-900">ProspectIQ Series</span>
-                  <span className="text-[9px] text-gray-500">10 min read</span>
+                  <span className="text-[10px] font-bold text-gray-900">E-Commerce Series</span>
+                  <span className="text-[9px] text-gray-500">6 min read</span>
                 </div>
               </div>
             </div>
-            <Link to="/articles/lead-intelligence" className="px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
+            <Link to="/articles/cro-hierarchy" className="px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
               Read Article <ArrowRight size={16} />
             </Link>
           </div>
@@ -209,7 +209,7 @@ function Articles() {
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
             
             <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-8 border border-white/10 shadow-sm relative z-10">
-              <span className="text-xl">🤝</span>
+              <MessageSquare className="text-white" size={24} />
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 max-w-xl leading-tight relative z-10">
