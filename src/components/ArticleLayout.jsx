@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Mail, MessageSquare } from 'lucide-react';
+import { Mail, MessageSquare, ThumbsUp, ThumbsDown, Send, User } from 'lucide-react';
 
 export default function ArticleLayout({ 
   title, 
@@ -14,6 +14,55 @@ export default function ArticleLayout({
   const contentRef = useRef(null);
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState('');
+
+  // Social Share URLs
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const encodedUrl = encodeURIComponent(currentUrl);
+  const encodedTitle = encodeURIComponent(title);
+
+  // Like/Dislike state
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [interaction, setInteraction] = useState(null);
+
+  const handleLike = () => {
+    if (interaction === 'like') {
+      setLikes(likes - 1);
+      setInteraction(null);
+    } else {
+      setLikes(likes + 1);
+      if (interaction === 'dislike') setDislikes(dislikes - 1);
+      setInteraction('like');
+    }
+  };
+
+  const handleDislike = () => {
+    if (interaction === 'dislike') {
+      setDislikes(dislikes - 1);
+      setInteraction(null);
+    } else {
+      setDislikes(dislikes + 1);
+      if (interaction === 'like') setLikes(likes - 1);
+      setInteraction('dislike');
+    }
+  };
+
+  // Comments state
+  const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState("");
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (!commentText.trim()) return;
+    const newCommentObj = {
+      id: Date.now(),
+      author: "Guest User",
+      text: commentText,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+    setComments([...comments, newCommentObj]);
+    setCommentText("");
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -122,18 +171,31 @@ export default function ArticleLayout({
         <div className="w-full lg:w-[320px] shrink-0 lg:sticky lg:top-12 h-fit">
           
           {/* Share Actions */}
-          <div className="mb-12">
+          <div className="mb-8">
             <h4 className="font-bold text-gray-900 mb-5 text-sm tracking-wide">Share this Article</h4>
             <div className="flex items-center gap-3">
-               <a href="#" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-900 font-bold transition-colors">
+               <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-900 font-bold transition-colors">
                   X
                </a>
-               <a href="#" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-900 font-bold transition-colors">
+               <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-900 font-bold transition-colors">
                   in
                </a>
-               <a href="#" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-700 transition-colors">
+               <a href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`} className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-gray-700 transition-colors">
                   <Mail size={16} />
                </a>
+            </div>
+          </div>
+
+          {/* Like / Dislike Buttons */}
+          <div className="mb-12">
+            <h4 className="font-bold text-gray-900 mb-5 text-sm tracking-wide">Helpful?</h4>
+            <div className="flex items-center gap-3">
+               <button onClick={handleLike} className={`px-4 py-2 rounded-full border flex items-center gap-2 font-medium transition-colors ${interaction === 'like' ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-200 hover:bg-gray-50 text-gray-700'}`}>
+                  <ThumbsUp size={16} /> {likes}
+               </button>
+               <button onClick={handleDislike} className={`px-4 py-2 rounded-full border flex items-center gap-2 font-medium transition-colors ${interaction === 'dislike' ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-200 hover:bg-gray-50 text-gray-700'}`}>
+                  <ThumbsDown size={16} /> {dislikes}
+               </button>
             </div>
           </div>
 
@@ -160,19 +222,74 @@ export default function ArticleLayout({
         </div>
 
         {/* Prose Content (Right) */}
-        <div 
-          ref={contentRef}
-          className="flex-1 max-w-[800px] text-lg text-gray-700 leading-[1.8] font-light 
-          [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-16 [&>h2]:mb-8 
-          [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mt-12 [&>h3]:mb-6 
-          [&>p]:mb-8 
-          [&>ul]:list-none [&>ul]:pl-0 [&>ul]:mb-8 [&>ul>li]:relative [&>ul>li]:pl-6 [&>ul>li::before]:content-[''] [&>ul>li::before]:absolute [&>ul>li::before]:left-0 [&>ul>li::before]:top-[10px] [&>ul>li::before]:w-2 [&>ul>li::before]:h-2 [&>ul>li::before]:bg-gray-400 [&>ul>li::before]:rounded-full
-          [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8 
-          [&>li]:mb-4 
-          [&>strong]:font-semibold [&>strong]:text-gray-900
-          [&>blockquote]:text-xl [&>blockquote]:font-serif [&>blockquote]:italic [&>blockquote]:text-gray-900 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-900 [&>blockquote]:pl-6 [&>blockquote]:my-12 [&>blockquote]:py-2 [&>blockquote]:bg-[#FAF9F6] [&>blockquote]:rounded-r-2xl [&>blockquote]:pr-4">
-          {children}
+        <div className="flex-1 max-w-[800px]">
+          <div 
+            ref={contentRef}
+            className="text-lg text-gray-700 leading-[1.8] font-light 
+            [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-16 [&>h2]:mb-8 
+            [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mt-12 [&>h3]:mb-6 
+            [&>p]:mb-8 
+            [&>ul]:list-none [&>ul]:pl-0 [&>ul]:mb-8 [&>ul>li]:relative [&>ul>li]:pl-6 [&>ul>li::before]:content-[''] [&>ul>li::before]:absolute [&>ul>li::before]:left-0 [&>ul>li::before]:top-[10px] [&>ul>li::before]:w-2 [&>ul>li::before]:h-2 [&>ul>li::before]:bg-gray-400 [&>ul>li::before]:rounded-full
+            [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8 
+            [&>li]:mb-4 
+            [&>strong]:font-semibold [&>strong]:text-gray-900
+            [&>blockquote]:text-xl [&>blockquote]:font-serif [&>blockquote]:italic [&>blockquote]:text-gray-900 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-900 [&>blockquote]:pl-6 [&>blockquote]:my-12 [&>blockquote]:py-2 [&>blockquote]:bg-[#FAF9F6] [&>blockquote]:rounded-r-2xl [&>blockquote]:pr-4">
+            {children}
+          </div>
+
+          {/* Comments Section */}
+          <div className="mt-20 pt-16 border-t border-gray-100">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <MessageSquare size={24} className="text-gray-400" />
+              Comments ({comments.length})
+            </h3>
+            
+            <form onSubmit={handleCommentSubmit} className="mb-12">
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                  <User size={20} className="text-gray-400" />
+                </div>
+                <div className="flex-1">
+                  <textarea 
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    placeholder="Share your thoughts..."
+                    className="w-full min-h-[100px] p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all resize-y text-base text-gray-900"
+                  />
+                  <div className="mt-3 flex justify-end">
+                    <button type="submit" disabled={!commentText.trim()} className="px-6 py-2.5 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2 shadow-sm">
+                      <Send size={16} /> Post Comment
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div className="space-y-8">
+              {comments.length === 0 ? (
+                <div className="text-center py-12 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+                   <p className="text-gray-500 font-medium">No comments yet. Be the first to share your thoughts!</p>
+                </div>
+              ) : (
+                comments.map(comment => (
+                  <div key={comment.id} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                      <User size={20} className="text-gray-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="font-bold text-gray-900 text-sm">{comment.author}</span>
+                        <span className="text-xs text-gray-500 font-medium">{comment.date}</span>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed text-sm">{comment.text}</p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
+
       </div>
 
       {/* Dark Footer CTA */}
