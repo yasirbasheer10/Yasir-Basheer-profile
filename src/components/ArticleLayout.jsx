@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Mail } from 'lucide-react';
@@ -11,9 +11,62 @@ export default function ArticleLayout({
   heroImage, 
   children
 }) {
+  const contentRef = useRef(null);
+  const [headings, setHeadings] = useState([]);
+  const [activeId, setActiveId] = useState('');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    // 1. Find all h2 elements in the article content
+    const elements = Array.from(contentRef.current.querySelectorAll('h2'));
+    
+    // 2. Generate IDs and extract text
+    const extractedHeadings = elements.map((el, index) => {
+      // If it doesn't have an ID, create one from the text
+      if (!el.id) {
+        el.id = el.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+      }
+      return {
+        id: el.id,
+        text: el.innerText
+      };
+    });
+    
+    setHeadings(extractedHeadings);
+
+    // 3. Set up IntersectionObserver to highlight active TOC item
+    const callback = (entries) => {
+      // Find all intersecting elements
+      const intersecting = entries.filter(entry => entry.isIntersecting);
+      if (intersecting.length > 0) {
+        // Just take the first one visible
+        setActiveId(intersecting[0].target.id);
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: '-100px 0px -60% 0px',
+      threshold: 0
+    });
+
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [children]);
+
+  const scrollToHeading = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      // offset for sticky headers if any
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="bg-white min-h-screen font-sans">
@@ -85,31 +138,31 @@ export default function ArticleLayout({
           </div>
 
           {/* Table of Contents */}
-          <div className="bg-[#FAF9F6] p-6 rounded-3xl border border-gray-100">
-            <h4 className="font-bold text-gray-900 mb-5 text-sm tracking-wide">In this Article</h4>
-            <ul className="flex flex-col gap-4 text-sm font-medium">
-              <li className="font-bold text-gray-900 flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full border-[5px] border-gray-900 flex-shrink-0 flex items-center justify-center"></div>
-                1. Introduction
-              </li>
-              <li className="text-gray-500 hover:text-gray-900 transition-colors cursor-pointer pl-6">
-                2. The Current Problem
-              </li>
-              <li className="text-gray-500 hover:text-gray-900 transition-colors cursor-pointer pl-6">
-                3. First Principles Strategy
-              </li>
-              <li className="text-gray-500 hover:text-gray-900 transition-colors cursor-pointer pl-6">
-                4. Execution & Delivery
-              </li>
-              <li className="text-gray-500 hover:text-gray-900 transition-colors cursor-pointer pl-6">
-                5. Conclusion
-              </li>
-            </ul>
-          </div>
+          {headings.length > 0 && (
+            <div className="bg-[#FAF9F6] p-6 rounded-3xl border border-gray-100 max-h-[60vh] overflow-y-auto custom-scrollbar">
+              <h4 className="font-bold text-gray-900 mb-5 text-sm tracking-wide">In this Article</h4>
+              <ul className="flex flex-col gap-4 text-sm font-medium">
+                {headings.map((heading) => (
+                  <li 
+                    key={heading.id}
+                    onClick={() => scrollToHeading(heading.id)}
+                    className={`flex items-start gap-2 cursor-pointer transition-colors ${activeId === heading.id ? 'font-bold text-gray-900' : 'text-gray-500 hover:text-gray-900 pl-6'}`}
+                  >
+                    {activeId === heading.id && (
+                      <div className="w-4 h-4 mt-0.5 rounded-full border-[5px] border-gray-900 flex-shrink-0 flex items-center justify-center"></div>
+                    )}
+                    <span className="leading-tight">{heading.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Prose Content (Right) */}
-        <div className="flex-1 max-w-[800px] text-lg text-gray-700 leading-[1.8] font-light 
+        <div 
+          ref={contentRef}
+          className="flex-1 max-w-[800px] text-lg text-gray-700 leading-[1.8] font-light 
           [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-16 [&>h2]:mb-8 
           [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mt-12 [&>h3]:mb-6 
           [&>p]:mb-8 
@@ -117,7 +170,7 @@ export default function ArticleLayout({
           [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8 
           [&>li]:mb-4 
           [&>strong]:font-semibold [&>strong]:text-gray-900
-          [&>blockquote]:text-2xl [&>blockquote]:font-serif [&>blockquote]:italic [&>blockquote]:text-gray-900 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-900 [&>blockquote]:pl-6 [&>blockquote]:my-12 [&>blockquote]:py-2 [&>blockquote]:bg-[#FAF9F6] [&>blockquote]:rounded-r-2xl [&>blockquote]:pr-4">
+          [&>blockquote]:text-xl [&>blockquote]:font-serif [&>blockquote]:italic [&>blockquote]:text-gray-900 [&>blockquote]:border-l-4 [&>blockquote]:border-gray-900 [&>blockquote]:pl-6 [&>blockquote]:my-12 [&>blockquote]:py-2 [&>blockquote]:bg-[#FAF9F6] [&>blockquote]:rounded-r-2xl [&>blockquote]:pr-4">
           {children}
         </div>
       </div>
