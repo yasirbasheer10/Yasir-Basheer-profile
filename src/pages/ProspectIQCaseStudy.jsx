@@ -17,6 +17,29 @@ function ProspectIQCaseStudy() {
         <link rel="canonical" href="https://www.yasirbasheer.live/case-study/prospectiq" />
         <meta property="og:title" content="ProspectIQ - AI Platform Case Study" />
         <meta property="og:image" content="https://www.yasirbasheer.live/prospectIQ.png" />
+        <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": "ProspectIQ - AI Platform Case Study",
+                "author": {
+                  "@type": "Person",
+                  "name": "Yasir Basheer"
+                },
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "Yasir Basheer Portfolio",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.yasirbasheer.live/og-banner.png"
+                  }
+                },
+                "datePublished": "2026-08-30",
+                "description": "Case study on building ProspectIQ, an AI-powered B2B lead intelligence platform, integrating LLM-based data extraction and opportunity scoring."
+              }
+            `}
+          </script>
       </Helmet>
       <div className="bg-noise"></div>
 
@@ -71,78 +94,77 @@ function ProspectIQCaseStudy() {
         
         {/* Overview */}
         <div className="mb-20">
-          <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-          <p className="text-gray-600 leading-relaxed text-lg">
+          <h2 className="text-3xl font-semibold mb-6 text-gray-900">Project Overview</h2>
+          <p className="text-gray-600 leading-relaxed text-lg mb-6">
             ProspectIQ discovers promising companies, explains why they matter, identifies the right buyer, and prepares the conversation — backed by evidence. It is designed to replace scattered signals with actionable opportunities by evaluating company fit, problem evidence, buying intent, and contactability.
+          </p>
+          <p className="text-gray-600 leading-relaxed text-lg mb-6">
+            The core premise of the product is a pivot from traditional "Lead Generation" (buying lists of static emails) to "Lead Intelligence". The system operates as a background revenue agent that autonomously parses millions of data points across the web to score and rank B2B accounts. As the Lead Technical Project Manager, I architected the integration of advanced Large Language Models (LLMs) with traditional data scraping pipelines to build a system that not only finds leads, but contextually understands them.
           </p>
         </div>
 
         {/* The Challenge & My Approach */}
         <div className="grid md:grid-cols-2 gap-12 mb-20">
           <div>
-            <h2 className="text-2xl font-semibold mb-6">The Challenge</h2>
+            <h2 className="text-2xl font-semibold mb-6">The Data Challenge</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Most lead generation starts with a list. But a list does not tell you why a company is a fit, why "now" matters, who actually owns the problem, or what you should say. Sales teams waste an incredible amount of time researching bad-fit accounts or sending generic outbound sequences without proper context or verified evidence.
+            </p>
             <p className="text-gray-600 leading-relaxed">
-              Most lead generation starts with a list. But a list does not tell you why a company is a fit, why "now" matters, who actually owns the problem, or what you should say. Sales teams waste time researching bad-fit accounts or sending generic outreach without proper context or verified evidence.
+              When applying AI to this problem, the primary technical hurdle is hallucination. If an LLM tells an Account Executive that a prospect just raised a Series B, and the AE mentions it in an email, but the AI hallucinated the fact, the deal is dead instantly. We needed a system that enforced strict evidence-based extraction over creative generation.
             </p>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold mb-6">My Approach</h2>
+            <h2 className="text-2xl font-semibold mb-6">Architectural Strategy</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              I architected a background revenue agent that goes beyond standard list-building. Instead of just pulling data, the AI actively researches websites, business signals, and public information to create structured evidence. 
+              I architected a pipeline using LangChain that separates what is strictly known (verified evidence) from what the AI infers (AI insight). This transparency ensures trust. 
             </p>
             <p className="text-gray-600 leading-relaxed">
-              The platform separates what is strictly known (verified evidence) from what the AI infers (AI insight). This transparency ensures trust. The user defines their ideal geography, industries, and signals, and the AI agent researches, scores, and prioritizes the opportunities automatically.
+              The user defines their ideal geography, industries, and signals via the UI. Our backend agents then traverse web data (LinkedIn, SEC filings, press releases, career pages). The raw HTML/text is passed into a retrieval-augmented generation (RAG) pipeline where the LLM is heavily prompted to only return structured JSON arrays containing exact quotes (evidence) linked to specific URLs. If the AI cannot provide a source URL, the insight is discarded.
             </p>
           </div>
         </div>
 
-        {/* Discover UI Screenshot */}
+        {/* Deep Dive into AI Execution */}
         <div className="mb-20">
-          <div className="w-full rounded-[24px] overflow-hidden shadow-xl bg-gray-50 border border-gray-100 p-4 md:p-6 mb-6">
-            <img 
-              src="/prospectiq-discover.png" 
-              alt="ProspectIQ Discover Interface" 
-              className="w-full h-auto object-contain rounded-[8px] shadow-sm border border-gray-200"
-            />
-          </div>
-          <p className="text-sm text-gray-500 text-center font-light">
-            The Discover interface allows users to define specific criteria, technologies, and buying signals for AI research.
+          <h2 className="text-3xl font-semibold mb-6 text-gray-900">LLM Integration & Prompt Engineering</h2>
+          <p className="text-gray-600 leading-relaxed text-lg mb-6">
+            To achieve high fidelity in opportunity scoring, I managed the implementation of multi-step reasoning chains. Rather than asking a single LLM to evaluate an entire company, we deployed specialized agents:
+          </p>
+          <ul className="space-y-4 mb-6">
+            <li className="flex gap-4">
+              <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs shrink-0 mt-1">1</div>
+              <div>
+                <strong>The Intent Parser:</strong> A specialized model trained specifically to read recent news articles and press releases to identify hiring surges, funding rounds, or leadership changes.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs shrink-0 mt-1">2</div>
+              <div>
+                <strong>The Technographic Scanner:</strong> An agent that analyzes a company's career page job descriptions to infer what internal software stack they are currently running (e.g., if they are hiring a "Looker Developer," they run GCP/Looker).
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs shrink-0 mt-1">3</div>
+              <div>
+                <strong>The Synthesis Engine:</strong> The final LLM step that takes the outputs of all previous agents, runs a weighted algorithm against the user's Ideal Customer Profile (ICP), and assigns a final "Opportunity Score" from 0-100.
+              </div>
+            </li>
+          </ul>
+          <p className="text-gray-600 leading-relaxed text-lg">
+            This robust, multi-agent architecture allowed ProspectIQ to scale horizontally and process thousands of accounts asynchronously, returning highly accurate, non-hallucinated sales intelligence directly to the user's dashboard.
           </p>
         </div>
 
         {/* Key Features & Skills */}
         <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-sm border border-gray-100">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Key Features</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">AI-driven evidence research from public data</span></li>
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">Multi-factor Opportunity Scoring (confidence & fit)</span></li>
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">"Why Now" timing and intent detection</span></li>
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">Strict separation of Verified vs AI-Inferred insights</span></li>
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">Automated workflow from discovery to outreach</span></li>
-                <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 rounded-full bg-gray-900 mt-2 shrink-0"></span> <span className="leading-tight">Real-time background agent activity timeline</span></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Skills Used</h3>
-              <div className="flex flex-wrap gap-2">
-                {['LLM Integration', 'LangChain', 'Prompt Engineering', 'AI Workflow Automation', 'React', 'Data Extraction Pipelines', 'UI/UX Design', 'Dashboard Architecting'].map(skill => (
-                  <span key={skill} className="px-3 py-1.5 rounded-md bg-gray-50 text-gray-700 text-sm border border-gray-100">
-                    {skill}
-                  </span>
-                ))}
+          <h2 className="text-2xl font-semibold mb-8 text-center">Implementation Stack</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            {['LangChain', 'OpenAI APIs', 'RAG Architecture', 'React/Next.js', 'Prompt Engineering', 'Data Pipelines', 'System Architecture', 'Product Management'].map(skill => (
+              <div key={skill} className="bg-gray-50 py-3 px-4 rounded-xl text-sm font-medium text-gray-700 border border-gray-100">
+                {skill}
               </div>
-            </div>
-          </div>
-          
-          <hr className="my-10 border-gray-100" />
-          
-          <div>
-            <h3 className="text-xl font-semibold mb-4">The Result</h3>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              ProspectIQ turns scattered signals into prioritized, actionable opportunities. By letting the AI do the heavy lifting of research and qualification, sales teams can stay in control of the relationship—armed with context, the right buyer, and a personalized conversation starter before they even say hello.
-            </p>
+            ))}
           </div>
         </div>
 

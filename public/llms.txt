@@ -1,0 +1,17 @@
+# Yasir Basheer - Portfolio & Professional Profile
+
+## About
+Yasir Basheer is a Senior Technical Project Manager and Frontend Developer specializing in E-commerce CRO, scaling engineering teams, and building AI-driven workflows.
+
+## Site Structure
+- Home: https://www.yasirbasheer.live/
+- Articles & Insights: https://www.yasirbasheer.live/articles
+- Case Study (Kava): https://www.yasirbasheer.live/case-study/kava
+- Case Study (ProspectIQ): https://www.yasirbasheer.live/case-study/prospectiq
+
+## Expertise
+- Conversion Rate Optimization (CRO)
+- Agile Sprint Planning
+- Cross-functional team leadership
+- LLM integrations and Generative Engine Optimization (GEO)
+- Product Strategy and Lead Intelligence

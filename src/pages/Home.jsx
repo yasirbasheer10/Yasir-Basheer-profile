@@ -191,6 +191,32 @@ function Home() {
             }
           `}
         </script>
+        <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What services do you provide?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "I specialize in E-commerce Conversion Rate Optimization (CRO), Agile Project Management, scaling engineering teams, and integrating AI workflows using LangChain and LLMs."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How do you approach Conversion Rate Optimization (CRO)?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "I start with the fundamentals: ensuring core web vitals are green and the UX is frictionless across all devices before moving into advanced multivariate and psychological testing."
+                    }
+                  }
+                ]
+              }
+            `}
+          </script>
       </Helmet>
       
       <div className="bg-noise"></div>
