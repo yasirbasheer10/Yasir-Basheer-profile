@@ -7,19 +7,19 @@ const SocialMetrics = ({ isDark }) => (
   <div className={`absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 p-3 rounded-full backdrop-blur-md border ${isDark ? 'bg-black/20 border-white/10 text-white/90' : 'bg-white/60 border-black/5 text-gray-700'} z-20 shadow-sm`}>
     <button className="flex flex-col items-center gap-1 hover:text-blue-500 transition-colors group" aria-label="Like">
       <ThumbsUp size={18} className="group-hover:-translate-y-1 transition-transform" />
-      <span className="text-[10px] font-medium">2.4k</span>
+      <span className="text-[10px] font-medium">0</span>
     </button>
     <button className="flex flex-col items-center gap-1 hover:text-red-500 transition-colors group" aria-label="Dislike">
       <ThumbsDown size={18} className="group-hover:translate-y-1 transition-transform" />
-      <span className="text-[10px] font-medium">12</span>
+      <span className="text-[10px] font-medium">0</span>
     </button>
     <button className="flex flex-col items-center gap-1 hover:text-green-500 transition-colors group" aria-label="Comment">
       <MessageSquare size={18} className="group-hover:scale-110 transition-transform" />
-      <span className="text-[10px] font-medium">148</span>
+      <span className="text-[10px] font-medium">0</span>
     </button>
     <div className="flex flex-col items-center gap-1 mt-2 pt-2 border-t border-current/20" title="Visitors">
       <Eye size={18} />
-      <span className="text-[10px] font-medium">12k</span>
+      <span className="text-[10px] font-medium">0</span>
     </div>
   </div>
 );
