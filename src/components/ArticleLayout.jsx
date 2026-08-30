@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Mail } from 'lucide-react';
+import { Mail, MessageSquare } from 'lucide-react';
 
 export default function ArticleLayout({ 
   title, 
@@ -174,6 +174,45 @@ export default function ArticleLayout({
           {children}
         </div>
       </div>
+
+      {/* Dark Footer CTA */}
+      <footer className="w-full mt-20 pb-0">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 mb-16">
+          <div className="bg-[#1C1C1C] rounded-[40px] text-white p-12 md:p-24 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-noise opacity-20"></div>
+            
+            <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-8 border border-white/10 shadow-sm relative z-10">
+              <MessageSquare className="text-white" size={24} />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 max-w-xl leading-tight relative z-10 text-white">
+              Have an interesting project?
+            </h2>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
+              <a href="mailto:yasirmughal668@gmail.com" className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-white/5 border border-white/20 rounded-full font-medium transition-colors flex items-center justify-center gap-2 text-sm text-white">
+                <Mail size={16} />
+                Email Me
+              </a>
+              <a href="https://wa.me/923188201038" className="w-full sm:w-auto px-6 py-3 bg-white text-black hover:bg-gray-100 rounded-full font-bold transition-colors flex items-center justify-center gap-2 shadow-lg text-sm">
+                WhatsApp <span className="font-medium text-gray-600">(+92 318 8201038)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Minimal Bottom Footer */}
+        <div className="w-full border-t border-gray-200">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+            <div>© {new Date().getFullYear()} All rights reserved.</div>
+            <div className="flex items-center gap-8">
+              <a href="https://linkedin.com/in/yasirbasheer" className="hover:text-gray-900 transition-colors">LinkedIn</a>
+              <a href="https://contra.com/yasir_basheer" className="hover:text-gray-900 transition-colors">Contra</a>
+              <a href="#" className="hover:text-gray-900 transition-colors">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
