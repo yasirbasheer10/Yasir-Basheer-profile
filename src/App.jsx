@@ -7,6 +7,10 @@ import ProspectIQCaseStudy from './pages/ProspectIQCaseStudy';
 import Option1 from './pages/Option1';
 import Option2 from './pages/Option2';
 import Option3 from './pages/Option3';
+import Articles from './pages/Articles';
+import CROHierarchy from './pages/articles/CROHierarchy';
+import LLMAgile from './pages/articles/LLMAgile';
+import LeadIntelligence from './pages/articles/LeadIntelligence';
 
 function App() {
   return (
@@ -14,6 +18,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/cro-hierarchy" element={<CROHierarchy />} />
+          <Route path="/articles/llm-agile" element={<LLMAgile />} />
+          <Route path="/articles/lead-intelligence" element={<LeadIntelligence />} />
           <Route path="/case-study/kava" element={<KavaCaseStudy />} />
           <Route path="/case-study/prospectiq" element={<ProspectIQCaseStudy />} />
           <Route path="/option1" element={<Option1 />} />
