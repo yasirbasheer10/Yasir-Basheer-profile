@@ -225,26 +225,26 @@ function Articles() {
       </main>
 
       {/* Dark Footer Block */}
-      <footer className="w-full mt-24">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 mb-16">
-          <div className="w-full bg-[#1A1A1A] text-white rounded-[40px] p-16 md:p-24 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+      <footer className="w-full mt-20">
+        <div className="max-w-[1000px] mx-auto px-4 sm:px-8 mb-12">
+          <div className="w-full bg-[#1A1A1A] text-white rounded-[32px] p-10 md:p-14 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
             {/* Background grain for dark mode */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
             
-            <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-10 border border-white/10 shadow-lg relative z-10">
-              <span className="text-2xl">🤝</span>
+            <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-8 border border-white/10 shadow-sm relative z-10">
+              <span className="text-xl">🤝</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold tracking-tight mb-12 max-w-2xl leading-tight relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 max-w-xl leading-tight relative z-10">
               Have an interesting project?
             </h2>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
-              <a href="mailto:yasirmughal668@gmail.com" className="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-white/5 border border-white/20 rounded-full font-medium transition-colors flex items-center justify-center gap-3">
-                <Mail size={18} />
+              <a href="mailto:yasirmughal668@gmail.com" className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-white/5 border border-white/20 rounded-full font-medium transition-colors flex items-center justify-center gap-2 text-sm">
+                <Mail size={16} />
                 Email Me
               </a>
-              <a href="https://wa.me/923188201038" className="w-full sm:w-auto px-8 py-4 bg-white text-black hover:bg-gray-100 rounded-full font-bold transition-colors flex items-center justify-center gap-3 shadow-xl">
+              <a href="https://wa.me/923188201038" className="w-full sm:w-auto px-6 py-3 bg-white text-black hover:bg-gray-100 rounded-full font-bold transition-colors flex items-center justify-center gap-2 shadow-lg text-sm">
                 WhatsApp <span className="font-medium text-gray-600">(+92 318 8201038)</span>
               </a>
             </div>
