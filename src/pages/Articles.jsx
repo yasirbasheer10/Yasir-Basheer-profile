@@ -49,28 +49,60 @@ function Articles() {
         <link rel="canonical" href="https://www.yasirbasheer.live/articles" />
       </Helmet>
 
-      {/* Decorative Hero Background */}
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-gray-200/50 to-transparent pointer-events-none"></div>
+      {/* Creative Editorial Hero Section */}
+      <header className="relative w-full min-h-[70vh] flex flex-col justify-center items-center overflow-hidden mb-24 bg-[#F5F5F7] rounded-b-[60px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border-b border-white/50">
+        {/* Abstract Glowing Orbs */}
+        <div className="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-      {/* Navigation */}
-      <nav className="w-full px-8 py-8 flex justify-between items-center max-w-[1400px] mx-auto relative z-10">
-        <Link to="/" className="text-sm font-semibold tracking-wide hover:text-gray-600 transition-colors flex items-center gap-2 bg-white/50 backdrop-blur-md px-5 py-2 rounded-full border border-gray-200 shadow-sm">
-          <ArrowLeft size={16} /> Back to Portfolio
-        </Link>
-      </nav>
+        {/* Navigation / Back Button (Floating top left) */}
+        <nav className="absolute top-8 left-4 md:left-12 z-50">
+          <Link to="/" className="group flex items-center gap-3 px-6 py-3 bg-white/60 hover:bg-white backdrop-blur-xl rounded-full border border-white shadow-sm transition-all duration-300">
+            <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center group-hover:-translate-x-1 transition-transform">
+              <ArrowLeft size={14} />
+            </div>
+            <span className="text-sm font-bold tracking-wide text-gray-800">Portfolio</span>
+          </Link>
+        </nav>
 
-      {/* Hero Section */}
-      <header className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-10 md:mt-20 mb-20 relative z-10 flex flex-col items-center text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold tracking-wide mb-6 border border-blue-100">
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          Insights & Writing
+        {/* Massive Background Typography */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0 mt-10 md:mt-0">
+          <h1 className="text-[20vw] md:text-[15vw] font-black text-transparent bg-clip-text bg-gradient-to-b from-gray-200/80 to-[#F5F5F7] tracking-tighter leading-none whitespace-nowrap">
+            JOURNAL
+          </h1>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-gray-900 max-w-4xl">
-          Thoughts on product, scalable teams, and AI.
-        </h1>
-        <p className="text-gray-500 text-lg md:text-xl max-w-2xl leading-relaxed">
-          Deep dives into technical execution, conversion rate optimization, and my methodology for building high-velocity engineering teams.
-        </p>
+
+        {/* Foreground Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 mt-24 md:mt-12 w-full max-w-5xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-xs font-bold tracking-widest uppercase mb-10 shadow-xl transform -rotate-2 hover:rotate-0 transition-transform">
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Writing & Insights
+          </div>
+          
+          <h2 className="text-5xl md:text-[80px] lg:text-[100px] font-bold tracking-tighter text-gray-900 mb-12 leading-[0.9] max-w-4xl mx-auto drop-shadow-sm">
+            The intersection of<br/>
+            <span className="italic font-serif font-light text-gray-500 mr-2">design</span> & engineering.
+          </h2>
+          
+          {/* Bento Box Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-4 max-w-4xl mx-auto">
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2">
+              <span className="text-3xl mb-4 bg-blue-100 p-3 rounded-2xl">🚀</span>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Technical Execution</h3>
+              <p className="text-sm text-gray-500 font-medium leading-relaxed">Scaling engineering teams and shipping robust MVPs faster.</p>
+            </div>
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2 md:-translate-y-8 relative z-20">
+              <span className="text-3xl mb-4 bg-purple-100 p-3 rounded-2xl">📈</span>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">CRO & Analytics</h3>
+              <p className="text-sm text-gray-500 font-medium leading-relaxed">Data-driven growth strategies and storefront optimization.</p>
+            </div>
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2">
+              <span className="text-3xl mb-4 bg-rose-100 p-3 rounded-2xl">🧠</span>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">AI Workflows</h3>
+              <p className="text-sm text-gray-500 font-medium leading-relaxed">Architecting custom LLM pipelines to eliminate overhead.</p>
+            </div>
+          </div>
+        </div>
       </header>
 
       <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 mt-8 relative z-10">
