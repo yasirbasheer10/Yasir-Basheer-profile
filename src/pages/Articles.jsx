@@ -53,7 +53,7 @@ function Articles() {
       </Helmet>
 
       {/* Ultra Clean Minimal Hero */}
-      <header className="w-full pt-12 pb-16 flex flex-col items-center relative z-10">
+      <header className="w-full pt-12 pb-6 flex flex-col items-center relative z-10">
         <nav className="w-full px-8 max-w-[1400px] mx-auto mb-16">
           <Link to="/" className="inline-flex items-center gap-2 px-5 py-2 hover:bg-gray-100 rounded-full transition-colors text-sm font-medium text-gray-600">
             <ArrowLeft size={16} /> Back to Portfolio
