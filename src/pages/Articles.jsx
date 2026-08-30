@@ -135,12 +135,12 @@ function Articles() {
                 Project managers spend up to 40% of their week doing administrative overhead. Learn how to architect custom AI pipelines using LangChain to eliminate manual documentation in engineering sprints.
               </p>
             </div>
-            <div className="w-full md:w-1/2 flex justify-center z-10 relative h-[400px]">
-                {/* Visual Placeholder */}
-                <div className="w-[240px] h-[480px] bg-white rounded-[36px] shadow-2xl border-8 border-gray-900 absolute top-0 -rotate-3 overflow-hidden flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50">
-                   <Bot size={80} className="text-indigo-400 opacity-80" />
-                </div>
-            </div>
+              <div className="w-full md:w-1/2 flex justify-center z-10 relative h-[400px]">
+                  {/* Visual Image */}
+                  <div className="w-[240px] h-[480px] bg-white rounded-[36px] shadow-2xl border-8 border-gray-900 absolute top-0 -rotate-3 overflow-hidden flex items-center justify-center">
+                     <img src="/ai-sprint-planning-mobile.png" alt="AI Sprint Planning Interface" className="w-full h-full object-cover object-top" />
+                  </div>
+              </div>
           </div>
           
           {/* Bottom Bar */}
