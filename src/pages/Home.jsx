@@ -218,6 +218,12 @@ function Home() {
               >
                 CV
               </a>
+              <Link 
+                to="/articles" 
+                className="px-5 py-1.5 bg-white rounded-full border border-gray-100 shadow-sm text-xs md:text-sm font-medium hover:bg-gray-50 transition-colors"
+              >
+                Articles
+              </Link>
             </div>
             <div className="flex gap-4 text-xs md:text-sm font-medium">
               <a href="https://linkedin.com/in/yasirbasheer" className="hover:text-gray-600 transition-colors">LinkedIn</a>
@@ -228,28 +234,80 @@ function Home() {
             </div>
           </header>
 
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto z-10 mb-20 md:mb-28">
-            <div className="relative mb-6">
-              <div className="w-20 h-20 rounded-full overflow-hidden border-[3px] border-white shadow-md bg-gray-200">
-                <img 
-                  src="https://media.contra.com/image/upload/h_160,w_160/pyyju4uqxxwa6kxdrghl.avif" 
-                  alt="Yasir Basheer" 
-                  className="w-full h-full object-cover"
-                />
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-[1400px] mx-auto z-10 mb-20 md:mb-32 px-4 lg:px-8 w-full mt-10 md:mt-16">
+            
+            {/* Left: Typography & CTA */}
+            <div className="flex flex-col items-start text-left max-w-2xl z-10 w-full lg:w-1/2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100/50 backdrop-blur-sm text-green-700 rounded-full text-xs font-semibold tracking-wide mb-8 border border-green-200">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Available for New Projects
               </div>
-              <div className="absolute -right-16 top-0 bg-white px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold shadow-sm transform rotate-[8deg] border border-gray-100 flex items-center gap-1 whitespace-nowrap">
-                Yasir Basheer <span className="text-sm leading-none">👋</span>
+              
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.05]">
+                Shipping products that <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">scale</span>.
+              </h1>
+              
+              <p className="text-gray-500 text-lg md:text-xl max-w-lg leading-relaxed mb-10">
+                Senior Technical Project Manager specializing in E-commerce CRO, AI workflows, and building high-velocity engineering teams.
+              </p>
+              
+              <div className="flex gap-4">
+                <a href="#work" className="bg-gray-900 text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-black transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl shadow-gray-900/20">
+                  View Work <ArrowRight size={18} />
+                </a>
+                <a href="mailto:yasirmughal668@gmail.com" className="bg-white text-gray-900 px-8 py-4 rounded-full text-sm font-semibold hover:bg-gray-50 border border-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-sm">
+                  Contact Me
+                </a>
               </div>
             </div>
-            
-            <h1 className="text-4xl md:text-[50px] font-medium tracking-tight text-gray-900 mb-8 leading-[1.1]">
-              Building digital<br />products, brands, and<br />experience.
-            </h1>
-            
-            <a href="#work" className="bg-[#222222] text-white px-6 py-3 rounded-full text-xs font-medium hover:bg-black transition-colors flex items-center gap-2 shadow-md">
-              Latest Shots
-              <ArrowUpRight size={14} className="transform rotate-45" />
-            </a>
+
+            {/* Right: Floating Widget Collage */}
+            <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] flex items-center justify-center lg:justify-end z-10">
+               {/* Center Profile Ring */}
+               <div className="absolute top-1/2 left-1/2 lg:left-2/3 -translate-x-1/2 -translate-y-1/2 w-56 h-56 md:w-72 md:h-72 rounded-full border border-white/60 shadow-2xl p-2 bg-white/30 backdrop-blur-xl z-20 transition-transform duration-700 hover:scale-105">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-gray-200">
+                     <img src="https://media.contra.com/image/upload/h_400,w_400/pyyju4uqxxwa6kxdrghl.avif" alt="Yasir Basheer" className="w-full h-full object-cover scale-110" />
+                  </div>
+               </div>
+
+               {/* Floating Widgets */}
+               <div className="absolute top-[5%] left-[5%] lg:left-[10%] bg-white/90 backdrop-blur-md px-5 py-4 rounded-2xl shadow-xl border border-white/50 z-30 transform -rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-110">
+                 <div className="flex items-center gap-3">
+                   <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                     <Zap size={20} />
+                   </div>
+                   <div className="flex flex-col">
+                     <span className="text-xl font-bold text-gray-900">40%</span>
+                     <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Overhead Reduced</span>
+                   </div>
+                 </div>
+               </div>
+
+               <div className="absolute bottom-[10%] right-[10%] lg:right-0 bg-white/90 backdrop-blur-md px-5 py-4 rounded-2xl shadow-xl border border-white/50 z-30 transform rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-110">
+                 <div className="flex items-center gap-3">
+                   <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                     <Target size={20} />
+                   </div>
+                   <div className="flex flex-col">
+                     <span className="text-xl font-bold text-gray-900">CRO Expert</span>
+                     <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Data-Driven</span>
+                   </div>
+                 </div>
+               </div>
+               
+               <div className="absolute top-[20%] right-[0%] lg:-right-[5%] bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-white/50 z-10 transform rotate-12 transition-transform duration-500 hover:rotate-0 hover:scale-110">
+                 <div className="flex items-center gap-2">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                    </span>
+                    <span className="text-xs font-bold text-gray-900">AI Pipelines</span>
+                 </div>
+               </div>
+            </div>
           </div>
           
           <div className="absolute bottom-0 left-0 right-0 h-64 bg-[#E4E4E4] rounded-t-[50%] scale-x-[1.5] origin-bottom z-0"></div>
