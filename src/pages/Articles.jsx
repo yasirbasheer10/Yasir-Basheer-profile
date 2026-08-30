@@ -137,8 +137,8 @@ function Articles() {
             </div>
               <div className="w-full md:w-1/2 flex justify-center z-10 relative h-[400px]">
                   {/* Visual Image */}
-                  <div className="w-[240px] h-[480px] bg-white rounded-[36px] shadow-2xl border-8 border-gray-900 absolute top-0 -rotate-3 overflow-hidden flex items-center justify-center">
-                     <img src="/ai-sprint-planning-mobile.png" alt="AI Sprint Planning Interface" className="w-full h-full object-cover object-top" />
+                  <div className="w-[280px] h-auto absolute top-0 -rotate-3 flex items-center justify-center drop-shadow-2xl">
+                     <img src="/ai-sprint-planning-mobile.png" alt="AI Sprint Planning Interface" className="w-full h-auto object-contain" />
                   </div>
               </div>
           </div>
