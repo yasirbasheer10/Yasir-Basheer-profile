@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, ArrowLeft, ThumbsUp, ThumbsDown, MessageSquare, Eye } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ThumbsUp, ThumbsDown, MessageSquare, Eye, Search, Mail } from 'lucide-react';
 
 const SocialMetrics = ({ isDark }) => (
   <div className={`absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 p-3 rounded-full backdrop-blur-md border ${isDark ? 'bg-black/20 border-white/10 text-white/90' : 'bg-white/60 border-black/5 text-gray-700'} z-20 shadow-sm`}>
@@ -41,71 +41,66 @@ function Articles() {
     window.scrollTo(0, 0);
   }, []);
 
+  const [activeFilter, setActiveFilter] = useState('All');
+  const filters = ['All', 'Project Management', 'AI Workflows', 'CRO', 'Product Strategy'];
+
   return (
-    <div className="min-h-screen bg-[#F5F5F7] font-sans text-gray-900 selection:bg-gray-200 selection:text-black pb-20 relative">
+    <div className="min-h-screen bg-[#F9FAFB] font-sans text-gray-900 selection:bg-gray-200 selection:text-black flex flex-col">
       <Helmet>
         <title>Articles | Yasir Basheer</title>
         <meta name="description" content="Read articles and insights on project management, AI workflows, and e-commerce product design." />
         <link rel="canonical" href="https://www.yasirbasheer.live/articles" />
       </Helmet>
 
-      {/* Creative Editorial Hero Section */}
-      <header className="relative w-full min-h-[70vh] flex flex-col justify-center items-center overflow-hidden mb-24 bg-[#F5F5F7] rounded-b-[60px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border-b border-white/50">
-        {/* Abstract Glowing Orbs */}
-        <div className="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full mix-blend-multiply filter blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-
-        {/* Navigation / Back Button (Floating top left) */}
-        <nav className="absolute top-8 left-4 md:left-12 z-50">
-          <Link to="/" className="group flex items-center gap-3 px-6 py-3 bg-white/60 hover:bg-white backdrop-blur-xl rounded-full border border-white shadow-sm transition-all duration-300">
-            <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center group-hover:-translate-x-1 transition-transform">
-              <ArrowLeft size={14} />
-            </div>
-            <span className="text-sm font-bold tracking-wide text-gray-800">Portfolio</span>
+      {/* Ultra Clean Minimal Hero */}
+      <header className="w-full pt-12 pb-16 flex flex-col items-center relative z-10">
+        <nav className="w-full px-8 max-w-[1400px] mx-auto mb-16">
+          <Link to="/" className="inline-flex items-center gap-2 px-5 py-2 hover:bg-gray-100 rounded-full transition-colors text-sm font-medium text-gray-600">
+            <ArrowLeft size={16} /> Back to Portfolio
           </Link>
         </nav>
 
-        {/* Massive Background Typography */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0 mt-10 md:mt-0">
-          <h1 className="text-[20vw] md:text-[15vw] font-black text-transparent bg-clip-text bg-gradient-to-b from-gray-200/80 to-[#F5F5F7] tracking-tighter leading-none whitespace-nowrap">
-            JOURNAL
+        <div className="max-w-[800px] mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight">
+            Articles & Insights
           </h1>
-        </div>
-
-        {/* Foreground Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 mt-24 md:mt-12 w-full max-w-5xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-xs font-bold tracking-widest uppercase mb-10 shadow-xl transform -rotate-2 hover:rotate-0 transition-transform">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            Writing & Insights
-          </div>
-          
-          <h2 className="text-5xl md:text-[80px] lg:text-[100px] font-bold tracking-tighter text-gray-900 mb-12 leading-[0.9] max-w-4xl mx-auto drop-shadow-sm">
-            The intersection of<br/>
-            <span className="italic font-serif font-light text-gray-500 mr-2">design</span> & engineering.
-          </h2>
-          
-          {/* Bento Box Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-4 max-w-4xl mx-auto">
-            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2">
-              <span className="text-3xl mb-4 bg-blue-100 p-3 rounded-2xl">🚀</span>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Technical Execution</h3>
-              <p className="text-sm text-gray-500 font-medium leading-relaxed">Scaling engineering teams and shipping robust MVPs faster.</p>
-            </div>
-            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2 md:-translate-y-8 relative z-20">
-              <span className="text-3xl mb-4 bg-purple-100 p-3 rounded-2xl">📈</span>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">CRO & Analytics</h3>
-              <p className="text-sm text-gray-500 font-medium leading-relaxed">Data-driven growth strategies and storefront optimization.</p>
-            </div>
-            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[32px] border border-white shadow-lg flex flex-col items-start text-left transform transition-transform hover:-translate-y-2">
-              <span className="text-3xl mb-4 bg-rose-100 p-3 rounded-2xl">🧠</span>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">AI Workflows</h3>
-              <p className="text-sm text-gray-500 font-medium leading-relaxed">Architecting custom LLM pipelines to eliminate overhead.</p>
-            </div>
-          </div>
+          <p className="text-lg md:text-xl text-gray-500 font-medium">
+            Thoughts, frameworks, and deep dives into engineering, design, and scalable execution.
+          </p>
         </div>
       </header>
 
-      <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 mt-8 relative z-10">
+      {/* Pill-shaped Filter & Search Bar */}
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 mb-16 relative z-20">
+        <div className="flex flex-col md:flex-row items-center justify-between bg-white rounded-full p-2 shadow-sm border border-gray-200">
+          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide w-full md:w-auto px-2 pb-2 md:pb-0">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  activeFilter === filter 
+                    ? 'bg-gray-900 text-white shadow-md' 
+                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+          
+          <div className="relative w-full md:w-64 mt-2 md:mt-0 flex-shrink-0 px-2 md:px-0">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+            <input 
+              type="text" 
+              placeholder="Search articles..." 
+              className="w-full bg-gray-50 rounded-full py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-900 focus:bg-white transition-all border border-transparent focus:border-gray-900"
+            />
+          </div>
+        </div>
+      </div>
+
+      <main className="max-w-[1200px] mx-auto px-4 sm:px-8 flex flex-col gap-12 w-full flex-grow">
 
         {/* Card 1: Blue Centered Hero (Visual Product Design) */}
         <section className="w-full rounded-[40px] bg-[#1E40AF] text-white p-12 md:p-20 relative overflow-hidden shadow-xl flex flex-col items-center text-center group transition-transform duration-500 hover:scale-[1.01]">
@@ -227,8 +222,47 @@ function Articles() {
             </Link>
           </div>
         </section>
-
       </main>
+
+      {/* Dark Footer Block */}
+      <footer className="w-full mt-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-8 mb-16">
+          <div className="w-full bg-[#1A1A1A] text-white rounded-[40px] p-16 md:p-24 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+            {/* Background grain for dark mode */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+            
+            <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-10 border border-white/10 shadow-lg relative z-10">
+              <span className="text-2xl">🤝</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold tracking-tight mb-12 max-w-2xl leading-tight relative z-10">
+              Have an interesting project?
+            </h2>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
+              <a href="mailto:yasirmughal668@gmail.com" className="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-white/5 border border-white/20 rounded-full font-medium transition-colors flex items-center justify-center gap-3">
+                <Mail size={18} />
+                Email Me
+              </a>
+              <a href="https://wa.me/923188201038" className="w-full sm:w-auto px-8 py-4 bg-white text-black hover:bg-gray-100 rounded-full font-bold transition-colors flex items-center justify-center gap-3 shadow-xl">
+                WhatsApp <span className="font-medium text-gray-600">(+92 318 8201038)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Minimal Bottom Footer */}
+        <div className="w-full border-t border-gray-200">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+            <div>© {new Date().getFullYear()} All rights reserved.</div>
+            <div className="flex items-center gap-8">
+              <a href="https://linkedin.com/in/yasirbasheer" className="hover:text-gray-900 transition-colors">LinkedIn</a>
+              <a href="https://contra.com/yasir_basheer" className="hover:text-gray-900 transition-colors">Contra</a>
+              <a href="#" className="hover:text-gray-900 transition-colors">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
